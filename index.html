@@ -39,7 +39,7 @@
         }
         tbody tr {
             background: #e9f0f8;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, border-left-color 0.3s ease;
             cursor: default;
         }
         tbody tr:hover {
@@ -71,7 +71,7 @@
         }
         td.date {
             white-space: nowrap;
-            width: 110px;
+            width: 140px;
             color: #0a4a82;
             font-weight: 600;
         }
@@ -120,18 +120,51 @@
         .check-data {
             width: 18px;
             height: 18px;
-            accent-color: #0a4a82;
+            accent-color: #0a4a82; /* destaque da checkbox */
             margin-right: 6px;
             vertical-align: middle;
+            cursor: pointer;
         }
         td.data-check {
             width: 36px;
             text-align: center;
         }
+        /* Fundo verde claro para datas expiradas, texto riscado em vermelho */
+        tr.expirada td {
+            background: #c4fdd6 !important;
+            color: #e74c3c !important;
+            text-decoration: line-through;
+        }
+        /* Responsividade */
+        @media (max-width: 600px) {
+            body {
+                margin: 15px;
+                font-size: 14px;
+            }
+            h1 {
+                font-size: 1.4em;
+                margin-bottom: 15px;
+            }
+            table {
+                width: 100%;
+                border-spacing: 0 8px;
+            }
+            thead th, tbody td {
+                padding: 8px 6px;
+                font-size: 0.9em;
+            }
+            td.date {
+                width: 100px;
+            }
+            #botao-voltar {
+                padding: 8px 12px;
+                font-size: 0.9em;
+            }
+        }
     </style>
 </head>
 <body>
-    
+    <button id="botao-voltar" onclick="window.location.href='index.html'">Voltar</button>
     <h1>Cronograma 3º Trimestre 2025</h1>
     <table>
         <thead>
@@ -157,7 +190,7 @@
             <tr>
                 <td class="data-check"><input type="checkbox" class="check-data" data-id="d3" /></td>
                 <td class="date">04/08</td>
-                <td class="event">Plantão Pedagógico (Sábado Letivo)</td>
+                <td class="event">Plantão Pedagógico</td>
             </tr>
             <tr>
                 <td class="data-check"><input type="checkbox" class="check-data" data-id="d4" /></td>
@@ -259,6 +292,81 @@
         box.addEventListener('change', function() {
           localStorage.setItem(box.dataset.id, box.checked);
         });
+      });
+
+      // Função para obter nome do dia da semana em português abreviado
+      function getWeekdayName(dateStr) {
+        const dias = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+        // Para faixas, pega o 1º dia
+        let target = dateStr.split(/a|e/)[0].trim(); // "a" or "e" como separador de intervalo
+        // Para datas compostas tipo "18 e 19/08" trata o primeiro número + mês
+        if (target.includes(' ')) {
+          let parts = target.split(' ');
+          if (parts.length === 2 && parts[0].match(/^\d{1,2}$/)) {
+            // Assume formato "18 19/08" não esperado, ignora
+            // Só vai considerar o dia e mes adequadamente abaixo
+            target = parts[0] + '/' + parts[1].split('/')[1];
+          }
+        }
+        // Separa dia e mês
+        let [day, month] = target.split('/');
+        if (!month) {
+          // No caso "18 e 19/08", target pode estar só com "18"
+          // Vai ajustar para evitar erros
+          day = target;
+          month = '07'; // fallback julho
+        }
+        let year = 2025;
+        if (parseInt(month,10) < 7) year++;
+        const d = new Date(year, parseInt(month,10)-1, parseInt(day,10));
+        return dias[d.getDay()];
+      }
+
+      // Acrescenta dia da semana em todas as datas
+      document.querySelectorAll('td.date').forEach(function(cell) {
+        const original = cell.textContent.trim();
+        if (!original.match(/\(\w+\)$/)) {  // Evita duplicar dia da semana
+          let dataParaCalculo = original.replace(/ \(.*$/, '');
+          if (!dataParaCalculo) return;
+          if (!dataParaCalculo.includes('a') && !dataParaCalculo.includes('e'))
+            cell.textContent = `${original} (${getWeekdayName(dataParaCalculo)})`;
+          else {
+            const firstDate = dataParaCalculo.split(/a|e/)[0].trim();
+            cell.textContent = `${original} (${getWeekdayName(firstDate)})`;
+          }
+        }
+      });
+
+      // Função para converter string data pt-BR em Date, usando a data final de um intervalo quando houver
+      function parseDatePtBR(dateStr) {
+        let target = dateStr;
+        if (dateStr.includes('a')) {
+          // Exemplo "01 a 05/09"
+          target = dateStr.split('a')[1].trim();
+        } else if (dateStr.includes('e')) {
+          // Exemplo "18 e 19/08"
+          target = dateStr.split('e')[1].trim();
+        }
+        let [day, month] = target.split('/');
+        let year = 2025;
+        if (parseInt(month,10) < 7) year++;
+        return new Date(year, parseInt(month,10)-1, parseInt(day,10));
+      }
+
+      // Marca linhas expiradas com fundo verde claro e texto riscado vermelho
+      const today = new Date();
+      document.querySelectorAll('tbody tr').forEach((row) => {
+        const dateCell = row.querySelector('.date');
+        if (!dateCell) return;
+        let text = dateCell.textContent.trim().replace(/\s?\(.*\)$/,''); // Remove dia da semana
+        if (!text) return;
+        if (text.match(/^\D/)) return; // evita linhas de mês etc.
+        let dataRef = text;
+        if (text.includes('a')) dataRef = text.split('a')[1].trim();
+        else if (text.includes('e')) dataRef = text.split('e')[1].trim();
+        if (parseDatePtBR(dataRef).setHours(23,59,59,999) < today.getTime()) {
+          row.classList.add('expirada');
+        }
       });
     </script>
 </body>
