@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <title>Cronograma 3º Trimestre 2025</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4f8;
+            margin: 30px;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #0a4a82;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        table {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto 30px auto;
+            border-collapse: separate;
+            border-spacing: 0 12px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgb(10 74 130 / 0.15);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        thead tr {
+            background: #0a4a82;
+            color: #fff;
+            font-size: 1.1em;
+        }
+        thead th {
+            padding: 15px 10px;
+        }
+        tbody tr {
+            background: #e9f0f8;
+            transition: background-color 0.3s ease;
+            cursor: default;
+        }
+        tbody tr:hover {
+            background-color: #d2e4f8;
+        }
+        tbody td {
+            padding: 12px 15px;
+            vertical-align: middle;
+            border-left: 4px solid transparent;
+            font-size: 0.95em;
+        }
+        tbody tr:nth-child(even) td {
+            background: #f7fbff;
+        }
+        tbody tr:hover td {
+            border-left-color: #0a4a82;
+            background: #d2e4f8;
+        }
+        /* Meses destacados */
+        tbody tr.month-row td {
+            background: #0a4a82;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.05em;
+            text-align: center;
+            border-left: none !important;
+            cursor: default;
+            padding: 14px 0;
+        }
+        td.date {
+            white-space: nowrap;
+            width: 110px;
+            color: #0a4a82;
+            font-weight: 600;
+        }
+        td.event b {
+            color: #c0392b;
+        }
+        td.event u {
+            color: #2980b9;
+        }
+        td.event ul {
+            margin: 6px 0 0 18px;
+            padding-left: 0;
+            list-style-type: disc;
+            color: #555;
+            font-size: 0.9em;
+        }
+        .obs {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            background: #e1f0ff;
+            border-left: 5px solid #0a4a82;
+            color: #0a4a82;
+            font-weight: 700;
+            font-size: 1.1em;
+            border-radius: 6px;
+        }
+        #botao-voltar {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            background-color: #0a4a82;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+        #botao-voltar:hover {
+            background-color: #07406a;
+        }
+        .check-data {
+            width: 18px;
+            height: 18px;
+            accent-color: #0a4a82;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+        td.data-check {
+            width: 36px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <button id="botao-voltar" onclick="window.location.href='capa.html'">Voltar</button>
+    <h1>Cronograma 3º Trimestre 2025</h1>
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Data</th>
+                <th>Evento</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="month-row"><td colspan="3">JULHO</td></tr>
+            <tr>
+                <td class="data-check"><input type="checkbox" class="check-data" data-id="d1" /></td>
+                <td class="date">01 a 02/07</td>
+                <td class="event">Recesso</td>
+            </tr>
+            <tr>
+                <td class="data-check"><input type="checkbox" class="check-data" data-id="d2" /></td>
+                <td class="date">31/07</td>
+                <td class="event"><b>Prazo final para entrega da relação dos objetos de conhecimento que serão avaliados na VA</b></td>
+            </tr>
+            <tr class="month-row"><td colspan="3">AGOSTO</td></tr>
+            <tr>
+                <td class="data-check"><input type="checkbox" class="check-data" data-id="d3" /></td>
+                <td class="date">04/08</td>
+                <td class="event">Plantão Pedagógico (Sábado Letivo)</td>
+            </tr>
+            <tr>
+                <td class="data-check"><input type="checkbox" class="check-data" data-id="d4" /></td>
+                <td class="date">05/08</td>
+                <td class="event"><b>Prazo final para entrega da Verificação da Aprendizagem (VA) - II unidade à CP</b></td>
+            </tr>
+            <tr>
+                <td class="data-check"><input type="checkbox" class="check-data" data-id="d5" /></td>
+                <td class="date">09/08</td>
+                <td class="event">Aulão ENEM Redação referente ao dia 05/07 Profº. Yane (Educa+)</td>
+            </tr>
+            <tr>
+                <td class="data-check"><input type="checkbox" class="check-data" data-id="d6" /></td>
+                <td class="date">11/08</td>
+                <td class="event">Dia do Estudante – ações na escola (a definir)</td>
+            </tr>
+            <tr>
+                <td class="data-check"><input type="checkbox" class="check-data" data-id="d7" /></td>
+                <td class="date">12 a 15/08</td>
+                <td class="event">
+                    <b>Semana de Provas</b><br>
+                    <u>EJA – 12 à 18/08 (terça à segunda)</u><br>
+                    Conforme calendário a ser disponibilizado<br>
+                    <u>Diurno – 13 à 15/08 (quarta a sexta)</u>
+                    <ul>
+                        <li>13/08: Ciências Humanas e Sociais Aplicadas</li>
+                        <li>14/08: Linguagens e suas Tecnologias</li>
+                        <li>15/08: Matemática e Ciências da Natureza</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td class="data-check"><input type="checkbox" class="check-data" data-id="d8" /></td>
+                <td class="date">16/08</td>
+                <td class="event">Aulão ENEM – Ciências Humanas e Sociais Aplicadas</td>
+            </tr>
+            <tr>
+                <td class="data-check"><input type="checkbox" class="check-data" data-id="d9" /></td>
+                <td class="date">18 e 19/08</td>
+                <td class="event">
+                    <b>2ª Chamada</b><br>
+                    18/08 - Ciências Humanas e Sociais Aplicadas e Linguagens e suas Tecnologias<br>
+                    19/08 - Ciências da Natureza e Matemática<br><br>
+                    <b>Regimento Escolar Unificado - Artigo 54</b><br>
+                    Parágrafo único: justificativas para segunda chamada:
+                    <ul>
+                        <li>Atestado médico</li>
+                        <li>Luto por falecimento de parente de 1º grau</li>
+                        <li>Outros motivos relevantes a critério da direção</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td class="data-check"><input type="checkbox" class="check-data" data-id="d10" /></td>
+                <td class="date">29/08</td>
+                <td class="event">Término da II Unidade</td>
+            </tr>
+            <tr>
+                <td class="data-check"><input type="checkbox" class="check-data" data-id="d11" /></td>
+                <td class="date">30/08</td>
+                <td class="event">Aulão ENEM – Linguagens (Sábado Letivo)</td>
+            </tr>
+            <tr class="month-row"><td colspan="3">SETEMBRO</td></tr>
+            <tr>
+                <td class="data-check"><input type="checkbox" class="check-data" data-id="d12" /></td>
+                <td class="date">01/09</td>
+                <td class="event">Início da III Unidade</td>
+            </tr>
+            <tr>
+                <td class="data-check"><input type="checkbox" class="check-data" data-id="d13" /></td>
+                <td class="date">07/09</td>
+                <td class="event">Independência do Brasil</td>
+            </tr>
+            <tr>
+                <td class="data-check"><input type="checkbox" class="check-data" data-id="d14" /></td>
+                <td class="date"><b>08 a 19/09</b></td>
+                <td class="event"><b>Aplicação da PROVA SABE</b></td>
+            </tr>
+            <tr>
+                <td class="data-check"><input type="checkbox" class="check-data" data-id="d15" /></td>
+                <td class="date">13/09</td>
+                <td class="event">Conselho da II Unidade (Sábado)</td>
+            </tr>
+            <tr>
+                <td class="data-check"><input type="checkbox" class="check-data" data-id="d16" /></td>
+                <td class="date">27/09</td>
+                <td class="event">Aulão ENEM – Ciências da Natureza e Matemática (Sábado Letivo)</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="obs">
+        Obs.: A escolha do PNLD 2025 será em agosto!!!!!
+    </div>
+    <script>
+      // Salvar e restaurar status das caixas de seleção
+      document.querySelectorAll('.check-data').forEach((box) => {
+        const checked = localStorage.getItem(box.dataset.id);
+        if (checked === 'true') box.checked = true;
+        box.addEventListener('change', function() {
+          localStorage.setItem(box.dataset.id, box.checked);
+        });
+      });
+    </script>
+</body>
+</html>
